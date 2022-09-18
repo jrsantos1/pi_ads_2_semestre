@@ -8,9 +8,6 @@ public class EnderecoAgencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
-    private Agencia agencia;
-
     @Column(nullable = false)
     private String cep;
 
@@ -28,14 +25,6 @@ public class EnderecoAgencia {
 
 
     // Getter And Setters
-
-    public Agencia getAgencia() {
-        return agencia;
-    }
-
-    public void setAgencia(Agencia agencia) {
-        this.agencia = agencia;
-    }
 
     public long getId() {
         return id;

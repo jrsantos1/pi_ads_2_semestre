@@ -1,7 +1,9 @@
 package com.example.banco_mj.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Cliente {
@@ -12,9 +14,8 @@ public class Cliente {
     @Column(nullable = false)
     private String cpf;
 
-    @OneToOne
-    private Conta conta;
-    private LocalDate data_nascimento;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date data_nascimento;
 
     @ManyToOne
     private Endereco endereco;
@@ -42,20 +43,12 @@ public class Cliente {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
-    public Conta getConta() {
-        return conta;
-    }
-
-    public void setConta(Conta conta) {
-        this.conta = conta;
-    }
-
-    public LocalDate getData_nascimento() {
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    public Date getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(LocalDate data_nascimento) {
+    public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 

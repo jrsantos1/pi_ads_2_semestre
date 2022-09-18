@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <head th:replace="~{base :: head(Admin)}"> </head>
+    <script>
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+    </script>
+
+<body>
+
+    <div th:replace="~{base :: menu_admin}" ></div>
+
+    <div class="container-fluid mt-5">
+
+        <div class="row">
+            <div class="col" style="height: 500px; overflow: scroll">
+                <table class="table table-striped-columns">
+
+                    <h3> Clientes  </h3>
+
+                    <tr class="mt-2">
+                        <th> Nome </th>
+                        <th> CPF </th>
+                        <th> Data de Nascimento</th>
+                    </tr>
+                    <tr th:each="clientes: ${clientes}">
+                        <td th:text="${clientes.nome}"></td>
+                        <td th:text="${clientes.cpf}"></td>
+                        <td th:text="${clientes.data_nascimento}"></td>
+                        <td>
+                            <a th:href="@{/admin/alterar/usuario/{id}(id=${clientes.id})}" class="btn btn-primary"> Alterar </a>
+                            <a th:href="@{/admin/excluir/usuario/{id}(id=${clientes.id})}" class="btn btn-danger"> Excluir </a>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="col d-inline-block">
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </div>
+
+        <div class="row mt-5">
+
+            <div class="col">  <h1> Col 1 </h1> </div>
+            <div class="col">  <h1> Col 2 </h1> </div>
+            <div class="col">  <h1> Col 3 </h1> </div>
+
+        </div>
+
+
+    </div>
+
+    <table class="table table-striped-columns col overflow-auto" style="height: 150px; overflow-y: scroll; background-color: #470848">
+
+        <h3> Clientes  </h3>
+
+        <tr class="mt-2">
+            <th> Nome </th>
+            <th> CPF </th>
+            <th> Data de Nascimento</th>
+        </tr>
+        <tr th:each="clientes: ${clientes}">
+            <td th:text="${clientes.nome}"></td>
+            <td th:text="${clientes.cpf}"></td>
+            <td th:text="${clientes.data_nascimento}"></td>
+        </tr>
+
+    </table>
+
+</body>
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+</html>
