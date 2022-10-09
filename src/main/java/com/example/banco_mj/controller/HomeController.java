@@ -10,11 +10,9 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model){
-
         return "home";
     }
-
-    @PostMapping("/home")
+    @GetMapping("/home")
     public String home_(Model model){
 
         return "home";

@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.sql.DataSource;
 
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,32 +21,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure (HttpSecurity http) throws Exception {
         http.authorizeRequests((requests) -> requests
-                        .antMatchers("/", "/home").permitAll()
+                        .antMatchers("/", "/home", "/conta/formulario_nova_conta").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/user/home", true)
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll()).csrf().disable();
     }
-
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        UserDetails user =
-                User.builder().
-                        username("jhon").
-                        password(encoder.encode("admin")).
-                        roles("ADM").
-                        build();
+//        UserDetails user =
+//                User.builder().
+//                        username("45179292808").
+//                        password(encoder.encode("admin")).
+//                        roles("ADM").
+//                        build();
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(encoder)
-                .withUser(user);
+                .passwordEncoder(encoder);
+                   // .withUser(user);
     }
 
 //    @Bean
