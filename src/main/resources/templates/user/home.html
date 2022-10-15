@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" th:lang="pt-br">
+
+<head th:replace="~{base :: head(JMBank)}">
+</head>
+
+<body>
+<div class="row --bg-color-men" style="height: 100px; align-items: center">
+    <div class="col-4">
+        JM BANK
+    </div>
+    <div class="col-3">
+        BEM VINDO, <span th:text="${cliente.nome}"> </span>
+    </div>
+    <div class="col-3">
+        Saldo <span th:text="${cliente.saldo}"> R$ </span>
+    </div>
+    <div class="col-2">
+        SAIR ^
+    </div>
+</div>
+<div class="navbar navbar-expand-lg d-flex justify-content-around menu align-content-center justify-content-center">
+    <nav class="nav justify-content-center align-content-center menu_hover m-0 p-0">
+        
+        <a class="nav-link active d-flex flex-column justify-content-center align-content-center" aria-current="page" href="#" style="height: 100%;">
+            <span class="material-icons d-flex justify-content-center align-content-center"> home </span>
+            <h6> HOME </h6>
+        </a>
+      
+        <a class="nav-link d-flex flex-column justify-content-center align-content-center" aria-current="page" href="#" style="height: 100%;">
+            <span class="material-icons d-flex justify-content-center align-content-center"> paid </span>
+            <h6> CONTA </h6>
+        </a>
+    </nav>
+    <div>
+      <a sec:authorize="isAnonymous()" href="/login"> Login </a>
+      <a sec:authorize="!isAnonymous()" href="/logout"> logout </a>
+    </div>
+</div>
+
+</body>
+</html>

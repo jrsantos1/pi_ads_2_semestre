@@ -25,7 +25,6 @@ public class UserController {
 
         }
     }
-
     @GetMapping("/user/home")
     public String userHome(Model model, Principal usuario){
         Optional<Cliente> cliente = clienteRepository.findByCpf(usuario.getName());

@@ -3,6 +3,7 @@ package com.example.banco_mj.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -13,6 +14,16 @@ public class Cliente {
 
     @Column(nullable = false)
     private String cpf;
+
+    private BigDecimal saldo;
+
+    public BigDecimal getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
+    }
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data_nascimento;
