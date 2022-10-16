@@ -35,4 +35,14 @@ public class UserController {
         model.addAttribute("cliente", cliente.get());
         return "user/home";
     }
+    @GetMapping("/user/conta")
+    public String userConta(Model model, Principal usuario){
+        Optional<Cliente> cliente = clienteRepository.findByCpf(usuario.getName());
+        if (cliente.isEmpty()){
+            throw new IllegalArgumentException("Usuário Inválido");
+        }
+        System.out.println(cliente.get().getNome());
+        model.addAttribute("cliente", cliente.get());
+        return "user/conta";
+    }
 }

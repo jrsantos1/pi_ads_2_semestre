@@ -1,42 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" th:lang="pt-br">
 
-<head th:replace="~{base :: head(JMBank)}">
-</head>
+<head th:replace="~{base :: head(JMBank)}"> </head>
+
+    <script>
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Saldo últimos 30 dias',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+    </script>
+
 
 <body>
-<div class="row --bg-color-men" style="height: 100px; align-items: center">
-    <div class="col-4">
+<!--Menu-->
+<div class="row --bg-color-men container-fluid" style="height: 100px; align-items: center">
+    <div class="col-3">
         JM BANK
     </div>
     <div class="col-3">
-        BEM VINDO, <span th:text="${cliente.nome}"> </span>
     </div>
-    <div class="col-3">
-        Saldo <span th:text="${cliente.saldo}"> R$ </span>
-    </div>
-    <div class="col-2">
-        SAIR ^
+    <div class="col-6" style="display: flex;  justify-content: flex-end">
+        <div style="display: flex; flex-direction: column">
+            <div> Bem Vindo, <span th:text="${cliente.nome}">!</span> </div>
+            <div> Seu saldo é R$ <span th:text="${cliente.saldo}"></span> </div>
+        </div>
     </div>
 </div>
 <div class="navbar navbar-expand-lg d-flex justify-content-around menu align-content-center justify-content-center">
     <nav class="nav justify-content-center align-content-center menu_hover m-0 p-0">
         
-        <a class="nav-link active d-flex flex-column justify-content-center align-content-center" aria-current="page" href="#" style="height: 100%;">
+        <a class="nav-link active d-flex flex-column justify-content-center align-content-center" aria-current="page" href="/user/home" style="height: 100%;">
             <span class="material-icons d-flex justify-content-center align-content-center"> home </span>
             <h6> HOME </h6>
         </a>
-      
-        <a class="nav-link d-flex flex-column justify-content-center align-content-center" aria-current="page" href="#" style="height: 100%;">
+
+        <a class="nav-link d-flex flex-column justify-content-center align-content-center" aria-current="page" href="/user/conta" style="height: 100%;">
             <span class="material-icons d-flex justify-content-center align-content-center"> paid </span>
             <h6> CONTA </h6>
         </a>
     </nav>
     <div>
-      <a sec:authorize="isAnonymous()" href="/login"> Login </a>
-      <a sec:authorize="!isAnonymous()" href="/logout"> logout </a>
+      <a sec:authorize="isAnonymous()" href="/login">
+
+      <span class="material-icons d-flex justify-content-center align-content-center">
+        login
+      </span>
+          Login
+      </a>
+      <a sec:authorize="!isAnonymous()" href="/logout">
+      <span class="material-icons d-flex justify-content-center align-content-center">
+        logout
+      </span>
+          Logout
+      </a>
     </div>
 </div>
 
+<div class="" style="width: 100%; display: flex; justify-content: center">
+    <div class="container row mt-5" style="display: flex; justify-content: center">
+<!--Extrato-->
+    <div class="col-6" style="padding: 10px">
+        <div class="card container-fluid" style="margin: 2px">
+        <h3 style="text-align: center" class="mt-3"> Extrato </h3>
+<!--        infos usuario-->
+        <div class="d-flex mt-3">
+            <div>
+                <h5> Saldo </h5>
+                <p> R$ <span th:text="${cliente.saldo}" style="color: green"> </span> </p>
+            </div>
+        </div>
+<!--        tabela extrato-->
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> Data </th>
+                        <th> Valor </th>
+                        <th> Tipo </th>
+                        <th> Entrada / Saída </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 05/08/2022 </td>
+                        <td>  2 </td>
+                        <td> Transferência </td>
+                        <td> Saída </td>
+                    </tr>
+                    <tr>
+                        <td> 05/08/2022 </td>
+                        <td>  2 </td>
+                        <td> Transferência </td>
+                        <td> Saída </td>
+                    </tr>
+                    <tr>
+                        <td> 05/08/2022 </td>
+                        <td>  2 </td>
+                        <td> Transferência </td>
+                        <td> Saída </td>
+                    </tr>
+                    <tr>
+                        <td> 05/08/2022 </td>
+                        <td>  2 </td>
+                        <td> Transferência </td>
+                        <td> Saída </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            <p class="mt-5"><a href="#"> Clique para ver mais</a> </p>
+        </div>
+    </div>
+<!--grafico -->
+    <div class="col-6 card" style="padding: 10px">
+        <h3 style="text-align: center"> Saldo histórico </h3>
+        <div class="col d-inline-block mt-5" style="width: 100%;">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</div>
+</div>
 </body>
+<script>
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
 </html>

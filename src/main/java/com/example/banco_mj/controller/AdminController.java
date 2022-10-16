@@ -21,9 +21,7 @@ public class AdminController {
     public String dash(Model model){
 
         List<Cliente> listaCliente = clienteRepository.findAll();
-
         model.addAttribute("clientes", listaCliente);
-
         return "admin/dash";
 
     }

@@ -22,7 +22,11 @@
        <!-- <a class="nav-link disabled">Disabled</a> -->
     </nav>
     <div>
-      <a sec:authorize="isAnonymous()" href="/login"> Login </a>
+      <a sec:authorize="isAnonymous()" href="/login">
+          <span class="material-icons">
+            login
+          </span>
+      </a>
       <a sec:authorize="!isAnonymous()" href="/logout"> logout </a>
     </div>
 </div>
@@ -34,8 +38,18 @@
         <a class="nav-link" aria-current="page" href="#">CONTA</a>
     </nav>
     <div>
-      <a sec:authorize="isAnonymous()" href="/login"> Login </a>
-      <a sec:authorize="!isAnonymous()" href="/logout"> logout </a>
+      <a sec:authorize="isAnonymous()" href="/login">
+          Login
+      <span class="material-icons">
+        login
+      </span>
+      </a>
+      <a sec:authorize="!isAnonymous()" href="/logout">
+        Logout
+      <span class="material-icons">
+        logout
+      </span>
+      </a>
     </div>
 </div>
 

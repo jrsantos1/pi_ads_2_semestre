@@ -1,9 +1,15 @@
+*{
+    list-style: none;
+    list-style-type: none;
+    text-decoration: none;
+}
+
 :root{
     --bg-color-menu: #470848;
 }
 
 .menu {
-    background-color: #470848;
+    background-color: var(--bg-color-menu);
 }
 
 .menu_hover a:hover{

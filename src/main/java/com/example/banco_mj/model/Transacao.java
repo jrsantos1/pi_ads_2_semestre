@@ -2,6 +2,7 @@ package com.example.banco_mj.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Date;
 
 @Entity
 public class Transacao {
@@ -20,6 +21,9 @@ public class Transacao {
 
     @Column(nullable = false)
     private BigDecimal valor;
+
+    @Column(nullable = false)
+    private Date data;
 
 
     public Conta getConta_destino() {
